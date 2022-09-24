@@ -8,6 +8,8 @@ class EnergyData(HouseInfo):
 
     def _get_energy(self, rec):
         energy = int(rec, base=16)
+        energy = energy & self.ENERGY_BITS  # mask ENERGY bits
+        energy = energy >> 4  # shift right
         return energy
 
     def _convert_data(self, data):
